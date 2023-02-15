@@ -52,7 +52,7 @@ This project has an API developed in Python with the help of the Django framewor
 
 ## 🗺️ Diagram ER
 
-<h4><img alt="Foto de perfil" src="assets/images/diagram_school_manager.png" style="border-radius: 9px"/></h4>
+<h4><img alt="Diagrama" src="assets/images/diagram_school_manager.png" style="border-radius: 4px"/></h4>
 
 <br>
 
@@ -98,8 +98,8 @@ Authorization: Bearer Token
 ```json
 {
   "name": "Cristóvão Colombo",
-  "email": "cristovao_colombo@gmail.com",
-  "zip-code": "84556213",
+  "email": "cristovao_colombo_madureira@gmail.com",
+  "zip_code": "84556213",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
@@ -121,17 +121,35 @@ Status code
 
 ```json
 {
-  "id": 1,
+  "id": "a9249e36-9cbb-40d9-8eff-62da479a1446",
   "name": "Cristóvão Colombo",
-  "email": "cristovao_colombo@gmail.com",
-  "zip-code": "84556213",
+  "email": "cristovao_colombo_madureira@gmail.com",
+  "zip_code": "84556213",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
   "district": "Centro",
   "number": "1560",
   "phone": "41998935366",
-  "created_at": "2023-02-05T23:41:52.908114Z"
+  "created_at": "2023-02-15T13:20:52.369426Z"
+}
+```
+
+<br>
+
+<h3>Response returned if there is the same email registered in the database</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": {
+    "email": ["school with this email already exists."]
+  }
 }
 ```
 
@@ -162,30 +180,30 @@ Status code
 ```json
 [
   {
-    "id": 1,
+    "id": "34027f3a-10c9-4989-83a9-a62be44f2094",
     "name": "Cristóvão Colombo",
     "email": "cristovao_colombo_madureira@gmail.com",
-    "zip-code": "84556213",
+    "zip_code": "84556213",
     "state": "PR",
     "city": "Curitiba",
     "street": "Madureira",
     "district": "Centro",
     "number": "1560",
     "phone": "41998935366",
-    "created_at": "2023-02-05T23:41:52.908114Z"
+    "created_at": "2023-02-15T13:54:24.854484Z"
   },
   {
-    "id": 2,
+    "id": "e9b81859-8adb-41e4-bb60-f58d77457177",
     "name": "Cristóvão Colombo",
     "email": "cristovao_colombo_dondocas@gmail.com",
-    "zip-code": "86542133",
-    "city": "Maringá",
+    "zip_code": "86542133",
     "state": "PR",
+    "city": "Maringá",
     "street": "Dondocas",
     "district": "Centro",
     "number": "1560",
     "phone": "44991934477",
-    "created_at": "2023-02-05T23:41:52.908114Z"
+    "created_at": "2023-02-15T13:55:10.946222Z"
   }
 ]
 ```
@@ -227,17 +245,51 @@ Status code
 
 ```json
 {
-  "id": 1,
+  "id": "4c808757-a504-4168-93b2-847dbbd39ca2",
   "name": "Cristóvão Colombo",
   "email": "cristovao_colombo_madureira_2@gmail.com",
-  "zip-code": "84556213",
+  "zip_code": "84556213",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
   "district": "Centro",
   "number": "1560",
   "phone": "41998935366",
-  "created_at": "2023-02-05T23:41:52.908114Z"
+  "created_at": "2023-02-15T14:02:58.579198Z"
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<br>
+
+<h3>Response returned for no results found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "error": ["No results for 4c808757-a504-4168-93b2-847dbbd39ca4"]
 }
 ```
 
@@ -263,6 +315,38 @@ Status code
 
 ```
 204 No Content
+```
+
+<br>
+
+<h3>Response returned for no results found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "error": ["No results for 4c808757-a504-4168-93b2-847dbbd39ca4"]
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
 ```
 
 <br>
