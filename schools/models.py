@@ -15,7 +15,7 @@ class School(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __repr__(self):
-        return f"[{self.id}] - {self.email}"
+        return f'[{self.id}] - {self.email}'
     
 
   

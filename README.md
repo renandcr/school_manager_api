@@ -33,7 +33,7 @@ This project has an API developed in Python with the help of the Django framewor
     - [2 - Endpoints](#2---endpoints)
   - [Course](#course)
     - [3 - Endpoints](#3---endpoints)
-  - [Employee](#employee)
+  - [User](#user)
     - [4 - Endpoints](#4---endpoints)
   - [Address](#address)
     - [5 - Endpoints](#5---endpoints)
@@ -137,6 +137,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>Response returned if there is the same email registered in the database</h3>
 
 Status code
@@ -210,6 +226,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/school/< int:school_id > - Update school</h3>
 
 [back to Endpoints](#1---endpoints)
@@ -261,6 +293,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>Response returned for invalid ID</h3>
 
 Status code
@@ -289,7 +337,7 @@ Status code
 
 ```json
 {
-  "error": ["No results for 4c808757-a504-4168-93b2-847dbbd39ca4"]
+  "detail": "Not found."
 }
 ```
 
@@ -319,6 +367,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>Response returned for no results found</h3>
 
 Status code
@@ -329,7 +393,7 @@ Status code
 
 ```json
 {
-  "error": ["No results for 4c808757-a504-4168-93b2-847dbbd39ca4"]
+  "detail": "Not found."
 }
 ```
 
@@ -420,6 +484,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/student/< int:school_id > - Get students</h3>
 
 [back to Endpoints](#2---endpoints)
@@ -473,6 +553,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/student/< int:school_id >/< int:student_id > - Get student profile</h3>
 
 [back to Endpoints](#2---endpoints)
@@ -507,6 +603,22 @@ Status code
   "gender": "masculino",
   "created_at": "2023-02-05T23:41:52.908114Z",
   "school_id": "1"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
 }
 ```
 
@@ -563,6 +675,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/student/< int:school_id >/< int:student_id > - Delete student</h3>
 
 [back to Endpoints](#2---endpoints)
@@ -583,6 +711,22 @@ Status code
 
 ```
 204 No Content
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
 ```
 
 <br>
@@ -647,6 +791,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/course/< int:school_id > - Get courses</h3>
 
 [back to Endpoints](#3---endpoints)
@@ -690,6 +850,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/course/< int:school_id >/< int:course_id > - Get a course</h3>
 
 [back to Endpoints](#3---endpoints)
@@ -720,6 +896,22 @@ Status code
     "created_at": "2023-02-05T23:41:52.908114Z",
     "school_id": "1"
   },
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
 ```
 
 <br>
@@ -768,6 +960,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/course/< int:school_id >/< int:course_id > - Delete course</h3>
 
 [back to Endpoints](#3---endpoints)
@@ -792,42 +1000,58 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
 <br>
 
-### Employee
+### User
 
 #### 4 - Endpoints
 
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/employee/< int:school_id > | Create employee. |
-| GET | /school_manager/employee/< int:school_id > | Get employees. |
-| PATCH | /school_manager/employee/< int:school_id >/< int:employee_id > | Update employee. |
-| DELETE | /school_manager/employee/< int:school_id >/< int:employee_id > | Delete employee. |
+| POST | /school_manager/user/< int:school_id > | Create user. |
+| POST | /school_manager/login | Login. |
+| GET | /school_manager/user/< int:school_id > | Get all users registered in a given school |
+| PATCH | /school_manager/user/< int:school_id >/< int:employee_id > | Update user. |
+| DELETE | /school_manager/user/< int:school_id >/< int:employee_id > | Delete user. |
 
 <br>
 
-<h3>👉 /school_manager/employee/< int:school_id > - Create employee </h3>
+<h3>👉 /school_manager/user/< int:school_id > - Create user</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/employee/< int:school_id >
+POST /school_manager/user/< int:school_id >
 Host: localhost:8000
 Content-type: application/json
-Authorization: Bearer Token
 ```
 
 <h3>Request body</h3>
 
 ```json
 {
-  "username": "Claudia Amaral",
+  "first_name": "Claudia",
+  "last_name": "Amaral",
   "email": "claudia@gmail.com",
-  "password": "856477"
+  "username": "claudia",
+  "password": "123456"
 }
 ```
 
@@ -843,24 +1067,129 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "username": "Claudia Amaral",
+  "first_name": "Claudia",
+  "last_name": "Amaral",
   "email": "claudia@gmail.com",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "school_id": "1"
+  "username": "claudia",
+  "date_joined": "2023-02-17T12:29:35.729253Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
 }
 ```
 
 <br>
 
-<h3>👉 /school_manager/employee/< int:school_id > - Get employees</h3>
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<h3>Response returned for school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>Response returned if there is the same email registered in the database</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "email": ["user with this email already exists."]
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/login - Login</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/employee/< int:school_id >
+POST /school_manager/login
+Host: localhost:8000
+Content-type: application/json
+```
+
+<h3>Request body</h3>
+
+```json
+{
+  "email": "claudia@gmail.com",
+  "password": "123456"
+}
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3NjcyMzgwMSwiaWF0IjoxNjc2NjM3NDAxLCJqdGkiOiJhYmQ1YzJmYmEzNWY0MzMyYjVhNDMzZTFmM2Q4Yzg5NiIsInVzZXJfaWQiOiI5NGNhN2IyMS1hYjI4LTRjYjktYmQxYS05NmNkOTk0NTkwNzYifQ.Atwj2AHkKQ8M4s9F0HLoT-FYKhE4afoilN5JMP-fNVQ",
+  "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc2NjM3NzAxLCJpYXQiOjE2NzY2Mzc0MDEsImp0aSI6Ijk0ZDkwZDkyZmY0MzQ5OTg4YTg4NjFiYjEyZmRiNzExIiwidXNlcl9pZCI6Ijk0Y2E3YjIxLWFiMjgtNGNiOS1iZDFhLTk2Y2Q5OTQ1OTA3NiJ9.ROJj0Vh7Z5RL1jIvOPazp9nIPd2u3FhpbwwRSwMYulc"
+}
+```
+
+<br>
+
+<h3>Response returned for incorrect email or password</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "No active account found with the given credentials"
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/user/< int:school_id > - Get all users registered in a given school</h3>
+
+[back to Endpoints](#4---endpoints)
+
+<h3>Request information</h3>
+
+```
+GET /school_manager/user/< int:school_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -878,32 +1207,82 @@ Status code
 ```json
 [
   {
-    "id": 1,
-    "username": "Claudia Amaral",
+    "first_name": "Claudia",
+    "last_name": "Amaral",
     "email": "claudia@gmail.com",
-    "created_at": "2023-02-05T23:41:52.908114Z",
-    "school_id": "1"
+    "username": "claudia",
+    "date_joined": "2023-02-17T12:29:35.729253Z",
+    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
   },
   {
-    "id": 2,
-    "username": "Pedro Cavalcante",
-    "email": "pedro@gmail.com",
-    "created_at": "2023-02-05T23:41:52.908114Z",
-    "school_id": "1"
+    "first_name": "Fabiano",
+    "last_name": "Almeida",
+    "email": "fabiano@gmail.com",
+    "username": "fabiano",
+    "date_joined": "2023-02-17T12:45:51.462795Z",
+    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
   }
 ]
 ```
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
 <br>
 
-<h3>👉 /school_manager/employee/< int:school_id >/< int:employee_id > - Update employee</h3>
+<br>
+
+<h3>Response returned for school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/user/< int:school_id >/< int:user_id > - Update user</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/employee/< int:school_id >/< int:employee_id >
+PATCH /school_manager/user/< int:school_id >/< int:user_id >
 Host: localhost:8000
 Content-type: aplication/json
 Authorization: Bearer Token
@@ -929,24 +1308,74 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "username": "Claudia Amaral",
+  "id": "94ca7b21-ab28-4cb9-bd1a-96cd99459076",
+  "first_name": "Claudia",
+  "last_name": "Amaral",
   "email": "claudia_amaral@gmail.com",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "school_id": "1"
+  "username": "claudia",
+  "date_joined": "2023-02-17T12:29:35.729253Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
 }
 ```
 
 <br>
 
-<h3>👉 /school_manager/employee/< int:school_id >/< int:student_id > - Delete employee</h3>
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<h3>Response returned for user or school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/user/< int:school_id >/< int:user_id > - Delete user</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-DELETE /school_manager/employee/< int:school_id >/< int:employee_id >
+DELETE /school_manager/user/< int:school_id >/< int:user_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -959,6 +1388,38 @@ Status code
 
 ```
 204 No Content
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
 ```
 
 <br>
@@ -1029,6 +1490,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Get a address</h3>
 
 [back to Endpoints](#5---endpoints)
@@ -1062,6 +1539,22 @@ Status code
   "number": "1584",
   "created_at": "2023-02-05T23:41:52.908114Z",
   "student_id": "1"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
 }
 ```
 
@@ -1114,6 +1607,22 @@ Status code
 
 <br>
 
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
 <h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Delete address</h3>
 
 [back to Endpoints](#5---endpoints)
@@ -1134,6 +1643,22 @@ Status code
 
 ```
 204 No Content
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
 ```
 
 <br>
