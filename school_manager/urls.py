@@ -28,5 +28,6 @@ urlpatterns = [
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('school_manager/', include('schools.urls')),
     path('school_manager/', include('schools.urls')),
+    path('school_manager/', include('addresses.urls')),
     path('school_manager/', include('students.urls'))
 ]

@@ -75,8 +75,8 @@ http://localhost:8000 - (tip: add an endpoint at the end)
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | POST | /school_manager/school | Create school. |
 | GET | /school_manager/school | Get schools. |
-| PATCH | /school_manager/school/< int:school_id > | Update school. |
-| DELETE | /school_manager/school/< int:school_id > | Delete school. |
+| PATCH | /school_manager/school/< school_id > | Update school. |
+| DELETE | /school_manager/school/< school_id > | Delete school. |
 
 <br>
 
@@ -242,14 +242,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/school/< int:school_id > - Update school</h3>
+<h3>👉 /school_manager/school/< school_id > - Update school</h3>
 
 [back to Endpoints](#1---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/school/< int:school_id >
+PATCH /school_manager/school/< school_id >
 Host: localhost:8000
 Content-type: application/json
 Authorization: Bearer Token
@@ -309,24 +309,6 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
-<br>
-
 <h3>Response returned for no results found</h3>
 
 Status code
@@ -343,14 +325,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/school/< int:school_id > - Delete school</h3>
+<h3>👉 /school_manager/school/< school_id > - Delete school</h3>
 
 [back to Endpoints](#1---endpoints)
 
 <h3>Request information</h3>
 
 ```
-DELETE /school_manager/school/< int:school_id >
+DELETE /school_manager/school/< school_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -399,22 +381,6 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
 ### Student
 
 #### 2 - Endpoints
@@ -422,28 +388,32 @@ Status code
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/student/< int:school_id > | Create student. |
-| GET | /school_manager/student/< int:school_id > | Get students. |
-| GET | /school_manager/student/< int:school_id >/< int:student_id > | Get student profile. |
-| PATCH | /school_manager/student/< int:school_id >/< int:student_id > | Update student. |
-| DELETE | /school_manager/student/< int:school_id >/< int:student_id > | Delete student. |
+| POST | /school_manager/student/< school_id > | Create student. |
+| GET | /school_manager/student/< school_id > | Get students. |
+| GET | /school_manager/student/< school_id >/< student_id > | Get student profile. |
+| PATCH | /school_manager/student/< school_id >/< student_id > | Update student. |
+| DELETE | /school_manager/student/< school_id >/< student_id > | Delete student. |
 
 <br>
 
-<h3>👉 /school_manager/student/< int:school_id > - Create student</h3>
+<h3>👉 /school_manager/student/< school_id > - Create student</h3>
 
 [back to Endpoints](#2---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/student/< int:school_id >
+POST /school_manager/student/< school_id >
 Host: localhost:8000
 Content-type: application/json
 Authorization: Bearer Token
 ```
 
 <h3>Request body</h3>
+
+```
+In the 'gender' field, the possible options are: masculino, feminino, lgbt or outro.
+```
 
 ```json
 {
@@ -549,30 +519,14 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
-<h3>👉 /school_manager/student/< int:school_id > - Get students</h3>
+<h3>👉 /school_manager/student/< school_id > - Get students</h3>
 
 [back to Endpoints](#2---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/student/< int:school_id >
+GET /school_manager/student/< school_id >
 Host: localhost:8000
 Authorization: Bearer Token
 ```
@@ -650,30 +604,14 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
-<h3>👉 /school_manager/student/< int:school_id >/< int:student_id > - Get student profile</h3>
+<h3>👉 /school_manager/student/< school_id >/< student_id > - Get student profile</h3>
 
 [back to Endpoints](#2---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/student/< int:school_id >/< int:student_id >
+GET /school_manager/student/< school_id >/< student_id >
 Host: localhost:8000
 Authorization: Bearer Token
 ```
@@ -737,30 +675,14 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
-<h3>👉 /school_manager/student/< int:school_id >/< int:student_id > - Update student</h3>
+<h3>👉 /school_manager/student/< school_id >/< student_id > - Update student</h3>
 
 [back to Endpoints](#2---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/student/< int:school_id >/< int:student_id >
+PATCH /school_manager/student/< school_id >/< student_id >
 Host: localhost:8000
 Content-type: aplication/json
 Authorization: Bearer token
@@ -820,22 +742,6 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
 <h3>Response returned for school or student not found</h3>
 
 Status code
@@ -852,14 +758,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/student/< int:school_id >/< int:student_id > - Delete student</h3>
+<h3>👉 /school_manager/student/< school_id >/< student_id > - Delete student</h3>
 
 [back to Endpoints](#2---endpoints)
 
 <h3>Request information</h3>
 
 ```
-DELETE /school_manager/student/< int:school_id >/< int:student_id >
+DELETE /school_manager/student/< school_id >/< student_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -892,22 +798,6 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
 <h3>Response returned for school or student not found</h3>
 
 Status code
@@ -930,24 +820,24 @@ Status code
 
 [back to index](#index)
 
-| Method | Route                                                      | Description    |
-| ------ | ---------------------------------------------------------- | -------------- |
-| POST   | /school_manager/course/< int:school_id >                   | Create course. |
-| GET    | /school_manager/course/< int:school_id >                   | Get courses.   |
-| GET    | /school_manager/course/< int:school_id >/< int:course_id > | Get a course.  |
-| PATCH  | /school_manager/course/< int:school_id >/< int:course_id > | Update course. |
-| DELETE | /school_manager/course/< int:school_id >/< int:course_id > | Delete course. |
+| Method | Route                                              | Description    |
+| ------ | -------------------------------------------------- | -------------- |
+| POST   | /school_manager/course/< school_id >               | Create course. |
+| GET    | /school_manager/course/< school_id >               | Get courses.   |
+| GET    | /school_manager/course/< school_id >/< course_id > | Get a course.  |
+| PATCH  | /school_manager/course/< school_id >/< course_id > | Update course. |
+| DELETE | /school_manager/course/< school_id >/< course_id > | Delete course. |
 
 <br>
 
-<h3>👉 /school_manager/course/< int:school_id > - Create course </h3>
+<h3>👉 /school_manager/course/< school_id > - Create course </h3>
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/course/< int:school_id >
+POST /school_manager/course/< school_id >
 Host: localhost:8000
 Content-type: application/json
 Authorization: Bearer Token
@@ -1000,14 +890,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/course/< int:school_id > - Get courses</h3>
+<h3>👉 /school_manager/course/< school_id > - Get courses</h3>
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/course/< int:school_id >
+GET /school_manager/course/< school_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -1059,14 +949,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/course/< int:school_id >/< int:course_id > - Get a course</h3>
+<h3>👉 /school_manager/course/< school_id >/< course_id > - Get a course</h3>
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/course/< int:school_id >/< int:course_id >
+GET /school_manager/course/< school_id >/< course_id >
 Host: localhost:8000
 Authorization: Bearer Token
 ```
@@ -1109,14 +999,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/course/< int:school_id >/< int:course_id > - Update course
+<h3>👉 /school_manager/course/< school_id >/< course_id > - Update course
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/course/< int:school_id >/< int:course_id >
+PATCH /school_manager/course/< school_id >/< course_id >
 Host: localhost:8000
 Content-type: aplication/json
 Authorization: Bearer token
@@ -1169,14 +1059,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/course/< int:school_id >/< int:course_id > - Delete course</h3>
+<h3>👉 /school_manager/course/< school_id >/< course_id > - Delete course</h3>
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-DELETE /school_manager/course/< int:school_id >/< int:course_id >
+DELETE /school_manager/course/< school_id >/< course_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -1216,22 +1106,22 @@ Status code
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/user/< int:school_id > | Create user. |
+| POST | /school_manager/user/< school_id > | Create user. |
 | POST | /school_manager/login | Login. |
-| GET | /school_manager/user/< int:school_id > | Get all users registered in a given school |
-| PATCH | /school_manager/user/< int:school_id >/< int:employee_id > | Update user. |
-| DELETE | /school_manager/user/< int:school_id >/< int:employee_id > | Delete user. |
+| GET | /school_manager/user/< school_id > | Get all users registered in a given school |
+| PATCH | /school_manager/user/< school_id >/< employee_id > | Update user. |
+| DELETE | /school_manager/user/< school_id >/< employee_id > | Delete user. |
 
 <br>
 
-<h3>👉 /school_manager/user/< int:school_id > - Create user</h3>
+<h3>👉 /school_manager/user/< school_id > - Create user</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/user/< int:school_id >
+POST /school_manager/user/< school_id >
 Host: localhost:8000
 Content-type: application/json
 ```
@@ -1266,22 +1156,6 @@ Status code
   "username": "claudia",
   "date_joined": "2023-02-17T12:29:35.729253Z",
   "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
-}
-```
-
-<br>
-
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
 }
 ```
 
@@ -1375,14 +1249,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/user/< int:school_id > - Get all users registered in a given school</h3>
+<h3>👉 /school_manager/user/< school_id > - Get all users registered in a given school</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/user/< int:school_id >
+GET /school_manager/user/< school_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -1452,30 +1326,14 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
-<h3>👉 /school_manager/user/< int:school_id >/< int:user_id > - Update user</h3>
+<h3>👉 /school_manager/user/< school_id >/< user_id > - Update user</h3>
 
 [back to Endpoints](#4---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/user/< int:school_id >/< int:user_id >
+PATCH /school_manager/user/< school_id >/< user_id >
 Host: localhost:8000
 Content-type: aplication/json
 Authorization: Bearer Token
@@ -1529,17 +1387,57 @@ Status code
 
 <br>
 
-<h3>Response returned for invalid ID</h3>
+<h3>Response returned for user or school not found</h3>
 
 Status code
 
 ```
-400 Bad Request
+404 Not Found
 ```
 
 ```json
 {
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/user/< school_id >/< user_id > - Delete user</h3>
+
+[back to Endpoints](#4---endpoints)
+
+<h3>Request information</h3>
+
+```
+DELETE /school_manager/user/< school_id >/< user_id >
+Host: localhost:8000
+Authorization: Bearer token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+204 No Content
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
 }
 ```
 
@@ -1561,62 +1459,6 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/user/< int:school_id >/< int:user_id > - Delete user</h3>
-
-[back to Endpoints](#4---endpoints)
-
-<h3>Request information</h3>
-
-```
-DELETE /school_manager/user/< int:school_id >/< int:user_id >
-Host: localhost:8000
-Authorization: Bearer token
-```
-
-<br>
-
-<h3>Response returned for successful request</h3>
-
-Status code
-
-```
-204 No Content
-```
-
-<br>
-
-<h3>Response returned for unauthenticated user</h3>
-
-Status code
-
-```
-401 Unauthorized
-```
-
-```json
-{
-  "detail": "Authentication credentials were not provided."
-}
-```
-
-<br>
-
-<h3>Response returned for invalid ID</h3>
-
-Status code
-
-```
-400 Bad Request
-```
-
-```json
-{
-  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
-}
-```
-
-<br>
-
 ### Address
 
 #### 5 - Endpoints
@@ -1624,21 +1466,21 @@ Status code
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/address/< int:school_id >/< int:student_id > | Create address. |
-| GET | /school_manager/address/< int:school_id >/< int:student_id > | Get a address. |
-| PATCH | /school_manager/address/< int:school_id >/< int:student_id > | Update address. |
-| DELETE | /school_manager/address/< int:school_id >/< int:student_id > | Delete address. |
+| POST | /school_manager/address/create/< student_id > | Create address. |
+| GET | /school_manager/address/< address_id >| Get a address. |
+| PATCH | /school_manager/address/< address_id > | Update address. |
+| DELETE | /school_manager/address/< address_id >/< student_id > | Delete address. |
 
 <br>
 
-<h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Create address</h3>
+<h3>👉 /school_manager/address/create/< student_id > - Create address</h3>
 
 [back to Endpoints](#5---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/address/< int:school_id >/< int:student_id >
+POST /school_manager/address/create/< student_id >
 Host: localhost:8000
 Content-type: application/json
 Authorization: Bearer Token
@@ -1648,12 +1490,12 @@ Authorization: Bearer Token
 
 ```json
 {
-  "zip-code": "85444777",
+  "zip_code": "84555667",
   "state": "PR",
   "city": "Curitiba",
-  "street": "Benedito Mascarenhas",
-  "district": "Água azul",
-  "number": "1584"
+  "street": "Fernando Pessoa",
+  "district": "São Gonçalves",
+  "number": "3550"
 }
 ```
 
@@ -1669,15 +1511,15 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "zip-code": "85444777",
+  "id": "15661bd0-34fc-40f3-92b0-e2943b10e3da",
+  "zip_code": "84555667",
   "state": "PR",
   "city": "Curitiba",
-  "street": "Benedito Mascarenhas",
-  "district": "Água azul",
-  "number": "1584",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "student_id": "1"
+  "street": "Fernando Pessoa",
+  "district": "São Gonçalves",
+  "number": "3550",
+  "date_joined": "2023-02-18T17:22:06.705045Z",
+  "student": "9f77c944-d537-4bb0-af23-1be85ebbdef6"
 }
 ```
 
@@ -1699,14 +1541,46 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Get a address</h3>
+<h3>Response returned if the student already has a registered address</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "student": ["address with this student already exists."]
+}
+```
+
+<br>
+
+<h3>Response returned for student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/address/< address_id > - Get a address</h3>
 
 [back to Endpoints](#5---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/address/< int:school_id >/< int:student_id >
+GET /school_manager/address/< address_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -1723,15 +1597,15 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "zip-code": "85444777",
+  "id": "ca929dce-cbfe-4af8-819a-a0d8db287065",
+  "zip_code": "85444777",
   "state": "PR",
   "city": "Curitiba",
-  "street": "Benedito Mascarenhas",
+  "street": "Iguaçu",
   "district": "Água azul",
-  "number": "1584",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "student_id": "1"
+  "number": "5588",
+  "date_joined": "2023-02-18T16:42:21.385939Z",
+  "student": "8bb2e07d-3091-4a04-a50a-e4027bdde1af"
 }
 ```
 
@@ -1753,14 +1627,30 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Update address</h3>
+<h3>Response returned for address not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/address/< address_id > - Update address</h3>
 
 [back to Endpoints](#5---endpoints)
 
 <h3>Request information</h3>
 
 ```
-PATCH /school_manager/address/< int:school_id >/< int:student_id >
+PATCH /school_manager/address/< address_id >
 Host: localhost:8000
 Content-type: aplication/json
 Authorization: Bearer Token
@@ -1770,7 +1660,8 @@ Authorization: Bearer Token
 
 ```json
 {
-  "number": "3050"
+  "street": "Iguaçu",
+  "number": "5588"
 }
 ```
 
@@ -1786,15 +1677,15 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "zip-code": "85444777",
+  "id": "ca929dce-cbfe-4af8-819a-a0d8db287065",
+  "zip_code": "85444777",
   "state": "PR",
   "city": "Curitiba",
-  "street": "Benedito Mascarenhas",
+  "street": "Iguaçu",
   "district": "Água azul",
-  "number": "3050",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "student_id": "1"
+  "number": "5588",
+  "date_joined": "2023-02-18T16:42:21.385939Z",
+  "student": "8bb2e07d-3091-4a04-a50a-e4027bdde1af"
 }
 ```
 
@@ -1816,14 +1707,30 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/address/< int:school_id >/< int:student_id > - Delete address</h3>
+<h3>Response returned for address not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/address/< address_id > - Delete address</h3>
 
 [back to Endpoints](#5---endpoints)
 
 <h3>Request information</h3>
 
 ```
-DELETE /school_manager/address/< int:school_id >/< int:student_id >
+DELETE /school_manager/address/< address_id >
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -1851,6 +1758,22 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for address not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
 }
 ```
 
