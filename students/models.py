@@ -4,6 +4,7 @@ import uuid
 class Gender(models.TextChoices):
     MASCULINE = ('masculino')
     FEMININE = ('feminino')
+    LGBT = ('lgbt')
     OTHER = ('outro')
 
 
@@ -19,3 +20,6 @@ class Student(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True, editable=False)
 
     school = models.ForeignKey('schools.school', on_delete=models.CASCADE, related_name='students')
+
+    def __repr__(self):
+        return f'[{self.id}] - {self.email}'
