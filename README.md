@@ -447,7 +447,7 @@ Authorization: Bearer Token
 
 ```json
 {
-  "name": "Tobias",
+  "first_name": "Tobias",
   "last_name": "Almeida Ramos",
   "email": "tobias@gmail.com",
   "date_of_birth": "13/06/1990",
@@ -469,16 +469,16 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "name": "Tobias",
+  "id": "8bb2e07d-3091-4a04-a50a-e4027bdde1af",
+  "first_name": "Tobias",
   "last_name": "Almeida Ramos",
   "email": "tobias@gmail.com",
   "date_of_birth": "13/06/1990",
   "cpf": "07568875950",
   "phone": "43996935598",
   "gender": "masculino",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "school_id": "1"
+  "date_joined": "2023-02-17T22:51:23.066638Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
 }
 ```
 
@@ -495,6 +495,71 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned if gender field is submitted incorrectly</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "gender": ["\"masculin\" is not a valid choice."]
+}
+```
+
+<br>
+
+<h3>Response returned for school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>Response returned for e-mail and cpf fields already existing in the database</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "email": ["student with this email already exists."],
+  "cpf": ["student with this cpf already exists."]
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
 }
 ```
 
@@ -525,28 +590,28 @@ Status code
 ```json
 [
   {
-    "id": 1,
-    "name": "Tobias",
+    "id": "8bb2e07d-3091-4a04-a50a-e4027bdde1af",
+    "first_name": "Tobias",
     "last_name": "Almeida Ramos",
     "email": "tobias@gmail.com",
     "date_of_birth": "13/06/1990",
     "cpf": "07568875950",
     "phone": "43996935598",
     "gender": "masculino",
-    "created_at": "2023-02-05T23:41:52.908114Z",
-    "school_id": "1"
+    "date_joined": "2023-02-17T22:51:23.066638Z",
+    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
   },
   {
-    "id": 2,
-    "name": "Marcos",
-    "last_name": "Rocha",
-    "email": "marcos@gmail.com",
-    "date_of_birth": "20/08/2000",
-    "cpf": "07568858970",
-    "phone": "43996935040",
-    "gender": "masculino",
-    "created_at": "2023-02-05T23:41:52.908114Z",
-    "school_id": "1"
+    "id": "463cb423-17ea-4569-9e72-d63dfd932fa6",
+    "first_name": "Karina",
+    "last_name": "Bastos de Melo",
+    "email": "karina@gmail.com",
+    "date_of_birth": "22/09/1998",
+    "cpf": "07568827788",
+    "phone": "43996935577",
+    "gender": "feminino",
+    "date_joined": "2023-02-17T23:20:29.433530Z",
+    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
   }
 ]
 ```
@@ -564,6 +629,38 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
 }
 ```
 
@@ -593,16 +690,16 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "name": "Tobias",
-  "last_name": "Almeida Ramos",
-  "email": "tobias@gmail.com",
-  "date_of_birth": "13/06/1990",
-  "cpf": "07568875950",
-  "phone": "43996935598",
-  "gender": "masculino",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "school_id": "1"
+  "id": "463cb423-17ea-4569-9e72-d63dfd932fa6",
+  "first_name": "Karina",
+  "last_name": "Bastos de Melo",
+  "email": "karina@gmail.com",
+  "date_of_birth": "22/09/1998",
+  "cpf": "07568827788",
+  "phone": "43996935577",
+  "gender": "feminino",
+  "date_joined": "2023-02-17T23:20:29.433530Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
 }
 ```
 
@@ -619,6 +716,38 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for school or student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
 }
 ```
 
@@ -641,8 +770,8 @@ Authorization: Bearer token
 
 ```json
 {
-  "email": "tobias_almeida@gmail.com",
-  "phone": "43996935577"
+  "email": "karina_bastos@gmail.com",
+  "phone": "43996935599"
 }
 ```
 
@@ -660,16 +789,16 @@ Status code
 
 ```json
 {
-  "id": 1,
-  "name": "Tobias",
-  "last_name": "Almeida Ramos",
-  "email": "tobias_almeida@gmail.com",
-  "date_of_birth": "13/06/1990",
-  "cpf": "07568875950",
-  "phone": "43996935577",
-  "gender": "masculino",
-  "created_at": "2023-02-05T23:41:52.908114Z",
-  "school_id": "1"
+  "id": "463cb423-17ea-4569-9e72-d63dfd932fa6",
+  "first_name": "Karina",
+  "last_name": "Bastos de Melo",
+  "email": "karina_bastos@gmail.com",
+  "date_of_birth": "22/09/1998",
+  "cpf": "07568827788",
+  "phone": "43996935599",
+  "gender": "feminino",
+  "date_joined": "2023-02-17T23:20:29.433530Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
 }
 ```
 
@@ -686,6 +815,38 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<h3>Response returned for school or student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
 }
 ```
 
@@ -726,6 +887,38 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for invalid ID</h3>
+
+Status code
+
+```
+400 Bad Request
+```
+
+```json
+{
+  "error": ["“4c808757-a504-4168-93b2-847dbbd39ca” is not a valid UUID."]
+}
+```
+
+<br>
+
+<h3>Response returned for school or student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
 }
 ```
 

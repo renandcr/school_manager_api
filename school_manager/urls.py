@@ -27,5 +27,6 @@ urlpatterns = [
     path('school_manager/login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('school_manager/', include('schools.urls')),
-    path('school_manager/', include('accounts.urls'))
+    path('school_manager/', include('schools.urls')),
+    path('school_manager/', include('students.urls'))
 ]
