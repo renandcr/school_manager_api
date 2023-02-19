@@ -19,11 +19,11 @@ class UserCreateView(views.APIView):
         
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-
-class UserView(views.APIView):
-    uthentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
         
+
+class UserGetView(views.APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, _, school_id):
         try:
             users = get_list_or_404(User, school=school_id)
@@ -32,10 +32,14 @@ class UserView(views.APIView):
         
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-        
-    def patch(self, request, school_id, user_id):
+
+
+class UserView(views.APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    def patch(self, request, user_id):
         try:
-            user = get_object_or_404(User, id=user_id, school=school_id)
+            user = get_object_or_404(User, id=user_id)
             serializer = UserSerializer(user, request.data, partial=True)
             if not serializer.is_valid():
                 return response.Response(serializer.errors)
@@ -46,11 +50,13 @@ class UserView(views.APIView):
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, _, school_id, user_id):
+    def delete(self, _, user_id):
         try:
-            user = get_object_or_404(User, id=user_id, school=school_id)
+            user = get_object_or_404(User, id=user_id)
             user.delete()
             return response.Response(status=status.HTTP_204_NO_CONTENT)
         
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+
+            

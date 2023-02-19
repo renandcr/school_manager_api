@@ -1,3 +1,4 @@
+from addresses.models import Address
 from django.contrib import admin
 
-# Register your models here.
+admin.site.register(Address)
