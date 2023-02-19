@@ -4,15 +4,48 @@ from rest_framework import views, response, permissions, status
 from students.serializer import StudentSerializer
 from students.models import Student
 from django.core import exceptions
-from schools.models import School
 
 class StudentView(views.APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    def get(self, _, student_id):
+        try:
+            student = get_object_or_404(Student, id=student_id)
+            serializer = StudentSerializer(student)
+            return response.Response(serializer.data)
+
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST) 
+        
+    def patch(self, request, student_id):
+        try:
+            student = get_object_or_404(Student, id=student_id)
+            serializer = StudentSerializer(student, request.data, partial=True)
+            if not serializer.is_valid():
+                return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                serializer.save()
+                return response.Response(serializer.data)
+        
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, _, student_id):
+        try:
+            student = get_object_or_404(Student, id=student_id)
+            student.delete()      
+            return response.Response(status=status.HTTP_204_NO_CONTENT)      
+        
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class StudentCreateGetView(views.APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request, school_id):
         try:
-            school = get_object_or_404(School, id=school_id)
-            serializer = StudentSerializer(data={**request.data, 'gender': request.data['gender'].lower(),'school': school.id})
+            serializer = StudentSerializer(data={**request.data, 'gender': request.data['gender'].lower(),'school': school_id})
             if not serializer.is_valid():
                 return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -30,38 +63,4 @@ class StudentView(views.APIView):
         
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-        
-    def patch(self, request, school_id, student_id):
-        try:
-            student = get_object_or_404(Student, id=student_id, school=school_id)
-            serializer = StudentSerializer(student, request.data, partial=True)
-            if not serializer.is_valid():
-                return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                serializer.save()
-                return response.Response(serializer.data)
-        
-        except exceptions.ValidationError as error:
-            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, _, school_id, student_id):
-        try:
-            student = get_object_or_404(Student, id=student_id, school=school_id)
-            student.delete()      
-            return response.Response(status=status.HTTP_204_NO_CONTENT)      
-        
-        except exceptions.ValidationError as error:
-            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-        
-
-class StudentProfileView(views.APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-    def get(self, _, school_id, student_id):
-        try:
-            student = get_object_or_404(Student, id=student_id, school=school_id)
-            serializer = StudentSerializer(student)
-            return response.Response(serializer.data)
-
-        except exceptions.ValidationError as error:
-            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST) 
+    

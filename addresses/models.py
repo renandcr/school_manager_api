@@ -9,7 +9,7 @@ class Address(models.Model):
     street = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     number = models.CharField(max_length=10)
-    date_joined = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     student = models.OneToOneField('students.student', on_delete=models.CASCADE)
 
