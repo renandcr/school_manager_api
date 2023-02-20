@@ -5,9 +5,14 @@ from django.shortcuts import get_object_or_404
 from django.core import exceptions
 from schools.models import School
 
-class SchoolView(views.APIView):
-    uthentication_classes = [JWTAuthentication]
+class SchoolCreateGetView(views.APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    def get(self, _): 
+        schools = School.objects.all()
+        serializer = SchoolSerializer(schools, many=True)
+        return response.Response(serializer.data)
+    
     def post(self, request):
         serializer = SchoolSerializer(data=request.data)
         if not serializer.is_valid():
@@ -16,11 +21,19 @@ class SchoolView(views.APIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def get(self, _): 
-        schools = School.objects.all()
-        serializer = SchoolSerializer(schools, many=True)
-        return response.Response(serializer.data)
 
+class SchoolView(views.APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, _, school_id):
+        try:
+            school = get_object_or_404(School, id=school_id)
+            serializer = SchoolSerializer(school)
+            return response.Response(serializer.data)
+            
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+        
     def patch(self, request, school_id): 
         try:
             school = get_object_or_404(School, id=school_id)
