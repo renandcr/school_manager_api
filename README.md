@@ -73,22 +73,23 @@ http://localhost:8000 - (tip: add an endpoint at the end)
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/user/create/< school_id > | Create user. |
+| POST | /school_manager/user/< school_id > | Create user. |
 | POST | /school_manager/login | Login. |
-| GET | /school_manager/user/get/< school_id > | Get all users registered in a given school. |
+| GET | /school_manager/user/get/< school_id >/ | Get all users registered in a given school. |
 | PATCH | /school_manager/user/< user_id > | Update user. |
 | DELETE | /school_manager/user/< user_id > | Delete user. |
+| PATCH | /school_manager/user/< school_id >/< user_email > | Link a school to a user. |
 
 <br>
 
-<h3>👉 /school_manager/user/create/< school_id > - Create user</h3>
+<h3>👉 /school_manager/user/< school_id > - Create user</h3>
 
 [back to Endpoints](#1---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/user/create/< school_id >
+POST /school_manager/user/< school_id >
 Host: localhost:8000
 Content-type: application/json
 ```
@@ -216,14 +217,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/user/get/< school_id > - Get all users registered in a given school</h3>
+<h3>👉 /school_manager/user/get/< school_id >/ - Get all users registered in a given school</h3>
 
 [back to Endpoints](#1---endpoints)
 
 <h3>Request information</h3>
 
 ```
-GET /school_manager/user/get/< school_id >
+GET /school_manager/user/get/< school_id >/
 Host: localhost:8000
 Authorization: Bearer token
 ```
@@ -409,6 +410,74 @@ Status code
 <br>
 
 <h3>Response returned for user not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/user/< school_id >/< user_email > - Link a school to a user</h3>
+
+[back to Endpoints](#2---endpoints)
+
+<h3>Request information</h3>
+
+```
+PATCH /school_manager/user/< school_id >/< user_email >
+Host: localhost:8000
+Authorization: Bearer token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "ea1d272d-7a24-453a-b253-31b96edb1910",
+  "first_name": "Leonardo",
+  "last_name": "Pereira",
+  "email": "leonardo@gmail.com",
+  "username": "leonardo",
+  "date_joined": "2023-02-20T21:58:33.188324Z",
+  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for school or user not found</h3>
 
 Status code
 
