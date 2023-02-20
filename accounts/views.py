@@ -7,10 +7,9 @@ from schools.models import School
 from accounts.models import User
 
 class UserCreateView(views.APIView):
-    def post(self, request, school_id):
+    def post(self, request):
         try:
-            school = get_object_or_404(School, id=school_id)
-            serializer = UserSerializer(data={**request.data, 'school': school.id})
+            serializer = UserSerializer(data=request.data)
             if not serializer.is_valid():
                 return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -19,7 +18,26 @@ class UserCreateView(views.APIView):
         
         except exceptions.ValidationError as error:
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserAddSchoolView(views.APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    def patch(self, _, school_id, user_email):
+        try:
+            user = get_object_or_404(User, email=user_email)
+            school = get_object_or_404(School, id=school_id)
+            user.school = school
+            serializer_update = UserSerializer(user, user.__dict__, partial=True)
+            if not serializer_update.is_valid():
+                return response.Response(serializer_update.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                serializer_update.save()    
+                return response.Response(serializer_update.data)
         
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserGetView(views.APIView):
     authentication_classes = [JWTAuthentication]
