@@ -502,6 +502,7 @@ Status code
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | POST | /school_manager/school | Create school. |
 | GET | /school_manager/school | Get schools. |
+| GET | /school_manager/school< school_id > | Get a school. |
 | PATCH | /school_manager/school/< school_id > | Update school. |
 | DELETE | /school_manager/school/< school_id > | Delete school. |
 
@@ -677,6 +678,78 @@ Status code
 ```json
 {
   "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+####################################
+<h3>👉 /school_manager/school< school_id > - Get a school</h3>
+
+[back to Endpoints](#2---endpoints)
+
+<h3>Request information</h3>
+
+```
+GET /school_manager/school< school_id >
+Host: localhost:8000
+Authorization: Bearer Token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
+  "name": "Cristóvão Colombo",
+  "email": "cristovao_colombo_madureira@gmail.com",
+  "zip_code": "86542589",
+  "state": "PR",
+  "city": "Curitiba",
+  "street": "Madureira",
+  "district": "Centro",
+  "number": "3650",
+  "phone": "44991934445",
+  "created_at": "2023-02-16T23:57:54.340493Z"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for school not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
 }
 ```
 
