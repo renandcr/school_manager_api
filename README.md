@@ -1,17 +1,18 @@
-<h1 style="color: #132A43; text-align: center">School Manager CX</h1>
+<h1 style="color: #132A43; text-align: center">School Manager CX - API</h1>
 
 ### Project description
 
-This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. As the name suggests, this is an application to be used by a school for student management. [Access the INTERFACE repository by clicking here]().
+This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. School Manager CX is a school management platform where you can add new schools, enroll students, add courses and add students to those courses. [Access the INTERFACE repository by clicking here](https://github.com/renandcr/school_manager_interface).
 
 <br>
 
 ![Python version](https://img.shields.io/badge/python-3.11.2-yellow)
+![Django version](https://img.shields.io/badge/django-4.1.7-green)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/renandcr/school_manager_api)
-![Ubuntu version](https://img.shields.io/badge/ubuntu-20.04.5-green)
-![GitHub repo directory count](https://img.shields.io/github/directory-file-count/renandcr/school_manager_api)
-![GitHub repo size](https://img.shields.io/github/repo-size/renandcr/school_manager_api)
+![GitHub language count](https://img.shields.io/github/languages/count/renandcr/school_manager_api)
 ![GitHub top language](https://img.shields.io/github/languages/top/renandcr/school_manager_api)
+![GitHub repo size](https://img.shields.io/github/repo-size/renandcr/school_manager_api)
+![GitHub repo directory count](https://img.shields.io/github/directory-file-count/renandcr/school_manager_api)
 ![GitHub](https://img.shields.io/github/license/renandcr/school_manager_api)
 
 <br>
@@ -2140,4 +2141,4 @@ Made with ❤️ by Renan Ribeiro 👋 Get in touch!
 
 ## License
 
-Licensed under [MIT](https://github.com/renandcr/school_manager_api/new/development).
+Licensed under [MIT](https://github.com/renandcr/school_manager_api/blob/development/LICENSE.md).
