@@ -5,7 +5,7 @@ from accounts.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email', 'username', 'date_joined', 'password', 'school' ]
+        fields = ['id', 'first_name', 'last_name', 'email', 'username', 'role', 'date_joined', 'password', 'school' ]
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
         instance.username = validated_data.get('username', instance.username)
+        instance.role = validated_data.get('role', instance.role)
         if validated_data.get('password'):
             instance.password = make_password(validated_data['password'])
 

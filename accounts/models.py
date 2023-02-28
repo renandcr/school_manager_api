@@ -8,10 +8,11 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
+    role = models.CharField(max_length=50)
     is_staff = models.BooleanField(default=True)
 
     USERNAME_FIELD= 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'role']
 
     school = models.ForeignKey('schools.school', on_delete=models.CASCADE, related_name='users', null=True)
 
