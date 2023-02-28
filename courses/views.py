@@ -1,7 +1,7 @@
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import response, permissions, status, views
-from courses.serializer import CouseSerializer
+from courses.serializer import CourseSerializer
 from students.models import Student
 from django.core import exceptions
 from courses.models import Course
@@ -11,7 +11,7 @@ class CourseCreateGetView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
     def post(self, request, school_id):
         try: 
-            serializer = CouseSerializer(data={**request.data, 'school': school_id})
+            serializer = CourseSerializer(data={**request.data, 'school': school_id})
             if not serializer.is_valid():
                 return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -24,7 +24,7 @@ class CourseCreateGetView(views.APIView):
     def get(self, _, school_id): 
         try:
             courses = get_list_or_404(Course, school=school_id)
-            serializer = CouseSerializer(courses, many=True)
+            serializer = CourseSerializer(courses, many=True)
             return response.Response(serializer.data)
 
         except exceptions.ValidationError as error:
@@ -37,7 +37,7 @@ class CourseView(views.APIView):
     def get(self, _, course_id):
         try:
             course = get_object_or_404(Course, id=course_id)
-            serializer = CouseSerializer(course)
+            serializer = CourseSerializer(course)
             return response.Response(serializer.data)
 
         except exceptions.ValidationError as error:
@@ -46,7 +46,7 @@ class CourseView(views.APIView):
     def patch(self, request, course_id): 
         try:
             course = get_object_or_404(Course, id=course_id)
-            serializer = CouseSerializer(course, request.data, partial=True)
+            serializer = CourseSerializer(course, request.data, partial=True)
             if not serializer.is_valid():
                 return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -66,16 +66,27 @@ class CourseView(views.APIView):
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CourseAddStudentView(views.APIView):
+class CourseAddAndRemoveStudentView(views.APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-    def post(self, _, course_id, student_id):
+    def post(self, _, course_id, student_email):
         try:
             course = get_object_or_404(Course, id=course_id)
-            student = get_object_or_404(Student, id=student_id)
+            student = get_object_or_404(Student, email=student_email)
             course.students.add(student)
-            serializer = CouseSerializer(course)
+            serializer = CourseSerializer(course)
             return response.Response(serializer.data)
         
         except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def patch(self, _, course_id, student_email):
+        try:
+            course = get_object_or_404(Course, id=course_id)
+            student = get_object_or_404(Student, email=student_email)
+            course.students.remove(student)
+            serializer = CourseSerializer(course)
+            return response.Response(serializer.data)
+
+        except exceptions.ValidationError as error: 
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)

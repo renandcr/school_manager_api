@@ -8,18 +8,13 @@ from accounts.models import User
 
 class UserCreateView(views.APIView):
     def post(self, request):
-        try:
-            serializer = UserSerializer(data=request.data)
-            if not serializer.is_valid():
-                return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                serializer.save()    
-                return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer = UserSerializer(data=request.data)
+        if not serializer.is_valid():
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer.save()    
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         
-        except exceptions.ValidationError as error:
-            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
-
-
 class UserAddSchoolView(views.APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]

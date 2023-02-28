@@ -7,8 +7,9 @@ class Course(models.Model):
     description = models.TextField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
-    students = models.ManyToManyField('students.student', blank=True, related_name='courses')
     school = models.ForeignKey('schools.school', on_delete=models.CASCADE, related_name='courses')
+    students = models.ManyToManyField('students.student', blank=True, related_name='courses')
+    instructors = models.ManyToManyField('accounts.user', blank=True, related_name='courses')
 
     def __repr__(self):
         return f'[{self.id} - {self.name}]'
