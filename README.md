@@ -23,9 +23,9 @@ This project has an API developed in Python with the help of the Django framewor
 
 ### Index
 
-- [🛠️ Technologies used](#️-technologies-used)
-- [🗺️ Diagram ER](#️-diagram-er)
-- [📜 Documentation](#-documentation)
+- [Technologies used](#️-technologies-used)
+- [Diagram ER](#️-diagram-er)
+- [Documentation](#-documentation)
   - [Base URL](#base-url)
   - [User](#user)
     - [1 - Endpoints](#1---endpoints)
