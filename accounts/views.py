@@ -8,12 +8,13 @@ from accounts.models import User
 
 class UserCreateView(views.APIView):
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = UserSerializer(data={**request.data, 'role': request.data['role'].lower()})
         if not serializer.is_valid():
             return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             serializer.save()    
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        
         
 class UserAddSchoolView(views.APIView):
     authentication_classes = [JWTAuthentication]
