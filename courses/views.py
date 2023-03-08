@@ -5,6 +5,7 @@ from courses.serializer import CourseSerializer
 from students.models import Student
 from django.core import exceptions
 from courses.models import Course
+from accounts.models import User
 
 class CourseCreateGetView(views.APIView):
     authentication_classes = [JWTAuthentication]
@@ -90,3 +91,31 @@ class CourseAddAndRemoveStudentView(views.APIView):
 
         except exceptions.ValidationError as error: 
             return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CourseAddAndRemoveInstructorView(views.APIView):
+    def post(self, _, course_id, user_email):
+        try:
+            course = get_object_or_404(Course, id=course_id)
+            user = get_object_or_404(User, email=user_email)
+            if (user.role == "instrutor(a) de ensino"):
+                course.instructors.add(user)
+                serializer = CourseSerializer(course)
+                return response.Response(serializer.data)
+            else:
+                return response.Response({"error": "O cargo deste funcionário não é de instrutor"}, status=status.HTTP_400_BAD_REQUEST)
+            
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def patch(self, _, course_id, user_email):
+        try: 
+            course = get_object_or_404(Course, id=course_id)
+            user = get_object_or_404(User, email=user_email)
+            course.instructors.remove(user)
+            serializer = CourseSerializer(course)
+            return response.Response(serializer.data)
+        
+        except exceptions.ValidationError as error:
+            return response.Response({'error': error}, status=status.HTTP_400_BAD_REQUEST)
+        

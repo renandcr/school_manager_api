@@ -56,7 +56,7 @@ class UserView(views.APIView):
             user = get_object_or_404(User, id=user_id)
             serializer = UserSerializer(user, request.data, partial=True)
             if not serializer.is_valid():
-                return response.Response(serializer.errors)
+                return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else: 
                 serializer.save()
                 return response.Response(serializer.data)

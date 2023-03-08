@@ -16,7 +16,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=75, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.OTHER)
     is_staff = models.BooleanField(default=True)
 
