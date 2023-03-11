@@ -2,7 +2,7 @@
 
 ### Project description
 
-This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. School Manager CX is a school management platform where you can add new schools, enroll students, add courses, and add instructors and students to those courses. [Access the INTERFACE repository by clicking here](https://github.com/renandcr/school_manager_interface).
+This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. School Manager CX is a school management platform where you can add new schools, enroll students, add staff, add courses, and add instructors and students to those courses. [Access the INTERFACE repository by clicking here](https://github.com/renandcr/school_manager_interface).
 
 <br>
 
