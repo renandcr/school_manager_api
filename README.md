@@ -17,16 +17,16 @@ This project has an API developed in Python with the help of the Django framewor
 
 <br>
 
-### Project status 👨‍💻 under development!
+### 🖥️ Project status 🚀 In production! Access the website [here.](https://school-manager-interface.vercel.app/)
 
 <br>
 
 ### Index
 
-- [🛠️ Technologies used](#️-technologies-used)
+- [Technologies used](#️-technologies-used)
 - [Auxiliary Tools](#auxiliary-tools)
-- [🗺️ Diagram ER](#️-diagram-er)
-- [📜 Documentation](#-documentation)
+- [Diagram ER](#️-diagram-er)
+- [Documentation](#-documentation)
   - [Base URL](#base-url)
   - [User](#user)
     - [1 - Endpoints](#1---endpoints)
@@ -69,7 +69,7 @@ This project has an API developed in Python with the help of the Django framewor
 
 ### Base URL
 
-http://localhost:8000 - (tip: add an endpoint at the end)
+https://schoolmanagerapi-production.up.railway.app - (tip: add an endpoint at the end)
 
 <br>
 
