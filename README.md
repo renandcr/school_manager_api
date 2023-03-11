@@ -2,7 +2,7 @@
 
 ### Project description
 
-This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. School Manager CX is a school management platform where you can add new schools, enroll students, add courses and add students to those courses. [Access the INTERFACE repository by clicking here](https://github.com/renandcr/school_manager_interface).
+This project has an API developed in Python with the help of the Django framework, and an interface developed in React.js. School Manager CX is a school management platform where you can add new schools, enroll students, add courses, and add instructors and students to those courses. [Access the INTERFACE repository by clicking here](https://github.com/renandcr/school_manager_interface).
 
 <br>
 
@@ -23,9 +23,10 @@ This project has an API developed in Python with the help of the Django framewor
 
 ### Index
 
-- [Technologies used](#️-technologies-used)
-- [Diagram ER](#️-diagram-er)
-- [Documentation](#-documentation)
+- [🛠️ Technologies used](#️-technologies-used)
+- [Auxiliary Tools](#auxiliary-tools)
+- [🗺️ Diagram ER](#️-diagram-er)
+- [📜 Documentation](#-documentation)
   - [Base URL](#base-url)
   - [User](#user)
     - [1 - Endpoints](#1---endpoints)
@@ -48,6 +49,11 @@ This project has an API developed in Python with the help of the Django framewor
 - [Django](https://www.djangoproject.com/)
 - [Django Rest Framework](https://www.django-rest-framework.org/)
 - [Django Rest Framework Simplejwt](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+
+## Auxiliary Tools
+
+- [Insomnia](https://insomnia.rest/)
+- [Project Trello](https://trello.com/invite/b/ZhPBaw28/ATTI49e717feb94b1f616a16667ac4a286d0FB2C48B5/school-manager-cx)
 
 <br>
 
@@ -74,7 +80,7 @@ http://localhost:8000 - (tip: add an endpoint at the end)
 [back to index](#index)
 | Method | Route | Description |
 | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| POST | /school_manager/user/< school_id > | Create user. |
+| POST | /school_manager/user | Create user. |
 | POST | /school_manager/login | Login. |
 | GET | /school_manager/user/get/< school_id >/ | Get all users registered in a given school. |
 | PATCH | /school_manager/user/< user_id > | Update user. |
@@ -83,14 +89,14 @@ http://localhost:8000 - (tip: add an endpoint at the end)
 
 <br>
 
-<h3>👉 /school_manager/user/< school_id > - Create user</h3>
+<h3>👉 /school_manager/user - Create user</h3>
 
 [back to Endpoints](#1---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/user/< school_id >
+POST /school_manager/user
 Host: localhost:8000
 Content-type: application/json
 ```
@@ -99,10 +105,11 @@ Content-type: application/json
 
 ```json
 {
-  "first_name": "Claudia",
-  "last_name": "Amaral",
-  "email": "claudia@gmail.com",
-  "username": "claudia",
+  "first_name": "Bruno",
+  "last_name": "Pereira Bastos",
+  "email": "bruno_pereira@gmail.com",
+  "username": "Bruno Bastos",
+  "role": "monitor(a) de ensino",
   "password": "123456"
 }
 ```
@@ -119,12 +126,14 @@ Status code
 
 ```json
 {
-  "first_name": "Claudia",
-  "last_name": "Amaral",
-  "email": "claudia@gmail.com",
-  "username": "claudia",
-  "date_joined": "2023-02-17T12:29:35.729253Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+  "id": "7dc3e9dc-4d2f-4efb-80dd-0d5661032215",
+  "first_name": "Bruno",
+  "last_name": "Pereira Bastos",
+  "email": "bruno_pereira@gmail.com",
+  "username": "Bruno Bastos",
+  "role": "monitor(a) de ensino",
+  "date_joined": "2023-03-08T23:47:45.435387Z",
+  "school": null
 }
 ```
 
@@ -243,20 +252,34 @@ Status code
 ```json
 [
   {
-    "first_name": "Claudia",
-    "last_name": "Amaral",
-    "email": "claudia@gmail.com",
-    "username": "claudia",
-    "date_joined": "2023-02-17T12:29:35.729253Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+    "id": "160ff9ea-7289-4fb0-b51d-b5f3d99bf7db",
+    "first_name": "Oscar",
+    "last_name": "Wilde",
+    "email": "oscar_wilde@gmail.com",
+    "username": "Oscar Wilde",
+    "role": "diretor(a)",
+    "date_joined": "2023-03-04T21:55:33.052997Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   },
   {
-    "first_name": "Fabiano",
-    "last_name": "Almeida",
-    "email": "fabiano@gmail.com",
-    "username": "fabiano",
-    "date_joined": "2023-02-17T12:45:51.462795Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+    "id": "bf18613f-a78c-4ca1-8a05-6138d3a7aefc",
+    "first_name": "André",
+    "last_name": "Santos Da Costa",
+    "email": "andre_costa@gmail.com",
+    "username": "Andre Santos",
+    "role": "instrutor(a) de ensino",
+    "date_joined": "2023-03-08T13:48:42.317717Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+  },
+  {
+    "id": "6a177046-1973-474f-ab31-c95faa1edc5d",
+    "first_name": "Renata",
+    "last_name": "Andretti Santana",
+    "email": "renata_andretti@gmail.com",
+    "username": "Renata Andretti",
+    "role": "instrutor(a) de ensino",
+    "date_joined": "2023-03-08T17:06:08.476909Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   }
 ]
 ```
@@ -310,7 +333,9 @@ Authorization: Bearer Token
 
 ```json
 {
-  "email": "claudia_amaral@gmail.com"
+  "email": "oscar_wilde@gmail.com",
+  "role": "diretor(a)",
+  "username": "Oscar Wilde"
 }
 ```
 
@@ -326,13 +351,14 @@ Status code
 
 ```json
 {
-  "id": "94ca7b21-ab28-4cb9-bd1a-96cd99459076",
-  "first_name": "Claudia",
-  "last_name": "Amaral",
-  "email": "claudia_amaral@gmail.com",
-  "username": "claudia",
-  "date_joined": "2023-02-17T12:29:35.729253Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+  "id": "160ff9ea-7289-4fb0-b51d-b5f3d99bf7db",
+  "first_name": "Oscar",
+  "last_name": "Wilde",
+  "email": "oscar_wilde@gmail.com",
+  "username": "Oscar Wilde",
+  "role": "diretor(a)",
+  "date_joined": "2023-03-04T21:55:33.052997Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -450,13 +476,14 @@ Status code
 
 ```json
 {
-  "id": "ea1d272d-7a24-453a-b253-31b96edb1910",
-  "first_name": "Leonardo",
-  "last_name": "Pereira",
-  "email": "leonardo@gmail.com",
-  "username": "leonardo",
-  "date_joined": "2023-02-20T21:58:33.188324Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+  "id": "160ff9ea-7289-4fb0-b51d-b5f3d99bf7db",
+  "first_name": "Oscar",
+  "last_name": "Wilde",
+  "email": "oscar_wilde@gmail.com",
+  "username": "Oscar Wilde",
+  "role": "diretor(a)",
+  "date_joined": "2023-03-04T21:55:33.052997Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -526,15 +553,16 @@ Authorization: Bearer Token
 
 ```json
 {
-  "name": "Cristóvão Colombo",
+  "branch": 3,
+  "name": "Escola Cristóvão Colombo Madureira",
   "email": "cristovao_colombo_madureira@gmail.com",
-  "zip_code": "84556213",
+  "zip_code": "86542589",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
   "district": "Centro",
-  "number": "1560",
-  "phone": "41998935366"
+  "number": "3650",
+  "phone": "44991934445"
 }
 ```
 
@@ -550,17 +578,18 @@ Status code
 
 ```json
 {
-  "id": "a9249e36-9cbb-40d9-8eff-62da479a1446",
-  "name": "Cristóvão Colombo",
+  "id": "0dcddffb-d514-4024-a7f2-1ddbe7077add",
+  "branch": "3",
+  "name": "Escola Cristóvão Colombo Madureira",
   "email": "cristovao_colombo_madureira@gmail.com",
-  "zip_code": "84556213",
+  "zip_code": "86542589",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
   "district": "Centro",
-  "number": "1560",
-  "phone": "41998935366",
-  "created_at": "2023-02-15T13:20:52.369426Z"
+  "number": "3650",
+  "phone": "44991934445",
+  "created_at": "2023-03-09T00:01:59.550638Z"
 }
 ```
 
@@ -625,21 +654,37 @@ Status code
 ```json
 [
   {
-    "id": "c1d62c6f-5154-4789-a6a0-bac781e6aa58",
-    "name": "Cristóvão Colombo",
-    "email": "cristovao_colombo_dondocas@gmail.com",
-    "zip_code": "86542133",
-    "state": "PR",
-    "city": "Maringá",
-    "street": "Dondocas",
+    "id": "cd94916b-571b-4a6e-afa0-efe080861422",
+    "branch": "1",
+    "name": "Escola Cristóvão Colombo Oswaldo Cruz",
+    "email": "cristovao_colombo_oswaldo_cruz@gmail.com",
+    "zip_code": "86800720",
+    "state": "pr",
+    "city": "Apucarana",
+    "street": "Oswaldo Cruz",
     "district": "Centro",
-    "number": "1560",
-    "phone": "44991934477",
-    "created_at": "2023-02-16T23:57:00.757650Z"
+    "number": "5468",
+    "phone": "43999564185",
+    "created_at": "2023-03-04T16:59:15.693756Z"
   },
   {
-    "id": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-    "name": "Cristóvão Colombo",
+    "id": "1a707f7f-202d-49f7-8bd4-010ad81a5e6c",
+    "branch": "2",
+    "name": "Escola Cristóvão Colombo Piracicaba",
+    "email": "cristovao_colombo_piracicaba@gmail.com",
+    "zip_code": "85462321",
+    "state": "pr",
+    "city": "Maringá",
+    "street": "Piracicaba",
+    "district": "Centro",
+    "number": "5263",
+    "phone": "44996524365",
+    "created_at": "2023-03-04T18:11:28.023295Z"
+  },
+  {
+    "id": "0dcddffb-d514-4024-a7f2-1ddbe7077add",
+    "branch": "3",
+    "name": "Escola Cristóvão Colombo Madureira",
     "email": "cristovao_colombo_madureira@gmail.com",
     "zip_code": "86542589",
     "state": "PR",
@@ -648,20 +693,7 @@ Status code
     "district": "Centro",
     "number": "3650",
     "phone": "44991934445",
-    "created_at": "2023-02-16T23:57:54.340493Z"
-  },
-  {
-    "id": "47375339-2546-4826-95e0-68ceff325f63",
-    "name": "Cristóvão Colombo",
-    "email": "cristovao_colombo_dale_carnegie@gmail.com",
-    "zip_code": "84599777",
-    "state": "PR",
-    "city": "Londrina",
-    "street": "Dale Carnegie",
-    "district": "Centro",
-    "number": "6533",
-    "phone": "43991938877",
-    "created_at": "2023-02-19T00:56:30.199970Z"
+    "created_at": "2023-03-09T00:01:59.550638Z"
   }
 ]
 ```
@@ -683,7 +715,7 @@ Status code
 ```
 
 <br>
-####################################
+
 <h3>👉 /school_manager/school< school_id > - Get a school</h3>
 
 [back to Endpoints](#2---endpoints)
@@ -708,17 +740,18 @@ Status code
 
 ```json
 {
-  "id": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-  "name": "Cristóvão Colombo",
-  "email": "cristovao_colombo_madureira@gmail.com",
-  "zip_code": "86542589",
-  "state": "PR",
-  "city": "Curitiba",
-  "street": "Madureira",
+  "id": "cd94916b-571b-4a6e-afa0-efe080861422",
+  "branch": "1",
+  "name": "Escola Cristóvão Colombo Oswaldo Cruz",
+  "email": "cristovao_colombo_oswaldo_cruz@gmail.com",
+  "zip_code": "86800720",
+  "state": "pr",
+  "city": "Apucarana",
+  "street": "Oswaldo Cruz",
   "district": "Centro",
-  "number": "3650",
-  "phone": "44991934445",
-  "created_at": "2023-02-16T23:57:54.340493Z"
+  "number": "5468",
+  "phone": "43999564185",
+  "created_at": "2023-03-04T16:59:15.693756Z"
 }
 ```
 
@@ -775,7 +808,7 @@ Authorization: Bearer Token
 
 ```json
 {
-  "email": "cristovao_colombo_madureira_2@gmail.com"
+  "phone": "44991938877"
 }
 ```
 
@@ -791,17 +824,18 @@ Status code
 
 ```json
 {
-  "id": "4c808757-a504-4168-93b2-847dbbd39ca2",
-  "name": "Cristóvão Colombo",
-  "email": "cristovao_colombo_madureira_2@gmail.com",
-  "zip_code": "84556213",
+  "id": "0dcddffb-d514-4024-a7f2-1ddbe7077add",
+  "branch": "3",
+  "name": "Escola Cristóvão Colombo Madureira",
+  "email": "cristovao_colombo_madureira@gmail.com",
+  "zip_code": "86542589",
   "state": "PR",
   "city": "Curitiba",
   "street": "Madureira",
   "district": "Centro",
-  "number": "1560",
-  "phone": "41998935366",
-  "created_at": "2023-02-15T14:02:58.579198Z"
+  "number": "3650",
+  "phone": "44991938877",
+  "created_at": "2023-03-09T00:01:59.550638Z"
 }
 ```
 
@@ -901,14 +935,17 @@ Status code
 
 [back to index](#index)
 
-| Method | Route                                                   | Description            |
-| ------ | ------------------------------------------------------- | ---------------------- |
-| POST   | /school_manager/course/create/< school_id >             | Create course.         |
-| GET    | /school_manager/course/get/< school_id >                | Get courses.           |
-| GET    | /school_manager/course/< course_id >                    | Get a course.          |
-| PATCH  | /school_manager/course/< course_id >                    | Update course.         |
-| DELETE | /school_manager/course/< course_id >                    | Delete course.         |
-| POST   | /school_manager/course/add/< course_id >/< student_id > | Add student to course. |
+| Method | Route                                                          | Description                      |
+| ------ | -------------------------------------------------------------- | -------------------------------- |
+| POST   | /school_manager/course/create/< school_id >                    | Create course.                   |
+| GET    | /school_manager/course/get/< school_id >                       | Get courses.                     |
+| GET    | /school_manager/course/< course_id >                           | Get a course.                    |
+| PATCH  | /school_manager/course/< course_id >                           | Update course.                   |
+| DELETE | /school_manager/course/< course_id >                           | Delete course.                   |
+| POST   | /school_manager/course/student/< course_id >/< student_email > | Add student to course.           |
+| PATCH  | /school_manager/course/student/< course_id >/< student_email > | Remove student from a course.    |
+| POST   | /school_manager/course/instructor/< course_id >/< user_email > | Add instructor to course.        |
+| PATCH  | /school_manager/course/instructor/< course_id >/< user_email > | Remove instructor from a course. |
 
 <br>
 
@@ -929,8 +966,8 @@ Authorization: Bearer Token
 
 ```json
 {
-  "name": "JavaScript",
-  "description": "Linguagem de programação com foco em desenvolvimento de aplicações web."
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991."
 }
 ```
 
@@ -946,12 +983,13 @@ Status code
 
 ```json
 {
-  "id": "4c6463ce-4203-4dfe-b0b6-10b899984656",
-  "name": "JavaScript",
-  "description": "Linguagem de programação com foco em desenvolvimento de aplicações web.",
-  "created_at": "2023-02-18T23:37:10.589959Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-  "students": []
+  "id": "1157b984-3e1f-4a05-bfae-4f3adfc765b8",
+  "students": [],
+  "instructors": [],
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991.",
+  "created_at": "2023-03-09T00:10:57.148024Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -1030,20 +1068,79 @@ Status code
 ```json
 [
   {
-    "id": "710258b8-a6b9-4141-b085-608dfc32e1fd",
+    "id": "5ed0f760-562b-4f7a-96c1-8958e724b42d",
+    "students": [
+      {
+        "id": "9edd0ee1-566d-4bc8-8f43-cfd90e8b5f5c",
+        "address": null,
+        "first_name": "Alexandro",
+        "last_name": "Paiva Vasconcelos",
+        "email": "alex_paiva@gmail.com",
+        "date_of_birth": "13/05/1994",
+        "cpf": "07588897452",
+        "phone": "43996521452",
+        "gender": "masculino",
+        "date_joined": "2023-03-04T17:12:13.446827Z",
+        "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+      },
+      {
+        "id": "daf9a08c-362c-4550-9273-c89734c76cae",
+        "address": null,
+        "first_name": "Paula",
+        "last_name": "Vieira Ventosa",
+        "email": "paula_ventosa@gmail.com",
+        "date_of_birth": "18/09/1996",
+        "cpf": "07899632541",
+        "phone": "44888526325",
+        "gender": "feminino",
+        "date_joined": "2023-03-04T18:17:53.569000Z",
+        "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+      }
+    ],
+    "instructors": [
+      {
+        "id": "6a177046-1973-474f-ab31-c95faa1edc5d",
+        "first_name": "Renata",
+        "last_name": "Andretti Santana",
+        "email": "renata_andretti@gmail.com",
+        "username": "Renata Andretti",
+        "role": "instrutor(a) de ensino",
+        "date_joined": "2023-03-08T17:06:08.476909Z",
+        "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+      },
+      {
+        "id": "bf18613f-a78c-4ca1-8a05-6138d3a7aefc",
+        "first_name": "André",
+        "last_name": "Santos Da Costa",
+        "email": "andre_costa@gmail.com",
+        "username": "Andre Santos",
+        "role": "instrutor(a) de ensino",
+        "date_joined": "2023-03-08T13:48:42.317717Z",
+        "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+      }
+    ],
     "name": "JavaScript",
-    "description": "Linguagem de programação com foco em desenvolvimento de aplicações web.",
-    "created_at": "2023-02-18T23:39:22.462854Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-    "students": []
+    "description": "JavaScript é uma linguagem de programação interpretada estruturada, de script em alto nível com tipagem dinâmica fraca e multiparadigma. Juntamente com HTML e CSS, o JavaScript é uma das três principais tecnologias da World Wide Web.",
+    "created_at": "2023-03-04T18:18:51.534763Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   },
   {
-    "id": "e719f81b-19d5-4197-9e30-6d9c83de6a1b",
-    "name": "HTML",
-    "description": "Linguagem de Marcação para desenvolvimento de aplicações web.",
-    "created_at": "2023-02-18T23:48:52.269868Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-    "students": []
+    "id": "0dd3ba4c-0022-4a78-9140-1c5c928d3f1a",
+    "students": [],
+    "instructors": [],
+    "name": "CSS3",
+    "description": "Cascading Style Sheets é um mecanismo para adicionar estilos a uma página web, aplicado diretamente nas tags HTML ou ficar contido dentro das tags <style>. Também é possível, adicionar estilos adicionando um link para um arquivo CSS que contém os estilos.",
+    "created_at": "2023-03-04T18:19:28.579401Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+  },
+  {
+    "id": "4c541e97-3090-48d6-9768-fb21fd2162c6",
+    "students": [],
+    "instructors": [],
+    "name": "HTML5",
+    "description": "HTML é uma linguagem de marcação utilizada na construção de páginas na Web. Documentos HTML podem ser interpretados por navegadores. A tecnologia é fruto da junção entre os padrões HyTime e SGML.",
+    "created_at": "2023-03-04T18:20:23.852259Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   }
 ]
 ```
@@ -1106,12 +1203,13 @@ Status code
 
 ```json
 {
-  "id": "e719f81b-19d5-4197-9e30-6d9c83de6a1b",
-  "name": "HTML5",
-  "description": "Linguagem de Marcação para desenvolvimento de aplicações web.",
-  "created_at": "2023-02-18T23:48:52.269868Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-  "students": []
+  "id": "1157b984-3e1f-4a05-bfae-4f3adfc765b8",
+  "students": [],
+  "instructors": [],
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991.",
+  "created_at": "2023-03-09T00:10:57.148024Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -1168,7 +1266,7 @@ Authorization: Bearer Token
 
 ```json
 {
-  "name": "HTML5"
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991."
 }
 ```
 
@@ -1186,12 +1284,13 @@ Status code
 
 ```json
 {
-  "id": "e719f81b-19d5-4197-9e30-6d9c83de6a1b",
-  "name": "HTML5",
-  "description": "Linguagem de Marcação para desenvolvimento de aplicações web.",
-  "created_at": "2023-02-18T23:48:52.269868Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-  "students": []
+  "id": "1157b984-3e1f-4a05-bfae-4f3adfc765b8",
+  "students": [],
+  "instructors": [],
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991.",
+  "created_at": "2023-03-09T00:10:57.148024Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -1285,14 +1384,14 @@ Status code
 
 <br>
 
-<h3>👉 /school_manager/course/add/< course_id >/< student_id > - Add student to course</h3>
+<h3>👉 /school_manager/course/student/< course_id >/< student_email > - Add student to course</h3>
 
 [back to Endpoints](#3---endpoints)
 
 <h3>Request information</h3>
 
 ```
-POST /school_manager/course/add/< course_id >/< student_id >
+POST /school_manager/course/student/< course_id >/< student_email >
 Host: localhost:8000
 Authorization: Bearer Token
 ```
@@ -1309,12 +1408,27 @@ Status code
 
 ```json
 {
-  "id": "710258b8-a6b9-4141-b085-608dfc32e1fd",
-  "name": "JavaScript",
-  "description": "Linguagem de programação com foco em desenvolvimento de aplicações web.",
-  "created_at": "2023-02-18T23:39:22.462854Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be",
-  "students": ["8bb2e07d-3091-4a04-a50a-e4027bdde1af"]
+  "id": "1157b984-3e1f-4a05-bfae-4f3adfc765b8",
+  "students": [
+    {
+      "id": "9edd0ee1-566d-4bc8-8f43-cfd90e8b5f5c",
+      "address": null,
+      "first_name": "Alexandro",
+      "last_name": "Paiva Vasconcelos",
+      "email": "alex_paiva@gmail.com",
+      "date_of_birth": "13/05/1994",
+      "cpf": "07588897452",
+      "phone": "43996521452",
+      "gender": "masculino",
+      "date_joined": "2023-03-04T17:12:13.446827Z",
+      "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+    }
+  ],
+  "instructors": [],
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991.",
+  "created_at": "2023-03-09T00:10:57.148024Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -1337,6 +1451,221 @@ Status code
 <br>
 
 <h3>Response returned for course or student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/course/student/< course_id >/< student_email > - Remove student from a course.</h3>
+
+[back to Endpoints](#3---endpoints)
+
+<h3>Request information</h3>
+
+```
+POST /school_manager/course/student/< course_id >/< student_email >
+Host: localhost:8000
+Authorization: Bearer Token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "1157b984-3e1f-4a05-bfae-4f3adfc765b8",
+  "students": [],
+  "instructors": [],
+  "name": "Python",
+  "description": "Python é uma linguagem de programação de alto nível, interpretada de script, imperativa, orientada a objetos, funcional, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991.",
+  "created_at": "2023-03-09T00:10:57.148024Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for course or student not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/course/instructor/< course_id >/< user_email > - Add instructor to course</h3>
+
+[back to Endpoints](#3---endpoints)
+
+<h3>Request information</h3>
+
+```
+POST /school_manager/course/instructor/< course_id >/< user_email >
+Host: localhost:8000
+Authorization: Bearer Token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "5ed0f760-562b-4f7a-96c1-8958e724b42d",
+  "students": [],
+  "instructors": [
+    {
+      "id": "6a177046-1973-474f-ab31-c95faa1edc5d",
+      "first_name": "Renata",
+      "last_name": "Andretti Santana",
+      "email": "renata_andretti@gmail.com",
+      "username": "Renata Andretti",
+      "role": "instrutor(a) de ensino",
+      "date_joined": "2023-03-08T17:06:08.476909Z",
+      "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+    }
+  ],
+  "name": "JavaScript",
+  "description": "JavaScript é uma linguagem de programação interpretada estruturada, de script em alto nível com tipagem dinâmica fraca e multiparadigma. Juntamente com HTML e CSS, o JavaScript é uma das três principais tecnologias da World Wide Web.",
+  "created_at": "2023-03-04T18:18:51.534763Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for course or user not found</h3>
+
+Status code
+
+```
+404 Not Found
+```
+
+```json
+{
+  "detail": "Not found."
+}
+```
+
+<br>
+
+<h3>👉 /school_manager/course/instructor/< course_id >/< user_email > - Remove instructor from a course.</h3>
+
+[back to Endpoints](#3---endpoints)
+
+<h3>Request information</h3>
+
+```
+POST /school_manager/course/instructor/< course_id >/< user_email >
+Host: localhost:8000
+Authorization: Bearer Token
+```
+
+<br>
+
+<h3>Response returned for successful request</h3>
+
+Status code
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "5ed0f760-562b-4f7a-96c1-8958e724b42d",
+  "students": [],
+  "instructors": [],
+  "name": "JavaScript",
+  "description": "JavaScript é uma linguagem de programação interpretada estruturada, de script em alto nível com tipagem dinâmica fraca e multiparadigma. Juntamente com HTML e CSS, o JavaScript é uma das três principais tecnologias da World Wide Web.",
+  "created_at": "2023-03-04T18:18:51.534763Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+}
+```
+
+<br>
+
+<h3>Response returned for unauthenticated user</h3>
+
+Status code
+
+```
+401 Unauthorized
+```
+
+```json
+{
+  "detail": "Authentication credentials were not provided."
+}
+```
+
+<br>
+
+<h3>Response returned for course or user not found</h3>
 
 Status code
 
@@ -1410,7 +1739,7 @@ Status code
 
 ```json
 {
-  "id": "a186890d-24d9-483c-82d8-d95df91039e4",
+  "id": "cf44dcc2-5646-4a68-b6b3-6ab182716e9c",
   "address": null,
   "first_name": "Bernardo",
   "last_name": "Alves",
@@ -1419,8 +1748,8 @@ Status code
   "cpf": "07568827777",
   "phone": "43996935456",
   "gender": "lgbt",
-  "date_joined": "2023-02-19T01:07:23.513467Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+  "date_joined": "2023-03-10T00:31:03.002566Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 
@@ -1516,33 +1845,33 @@ Status code
 ```json
 [
   {
-    "id": "8bb2e07d-3091-4a04-a50a-e4027bdde1af",
-    "address": "ca929dce-cbfe-4af8-819a-a0d8db287065",
-    "first_name": "Tobias",
-    "last_name": "Almeida Ramos",
-    "email": "tobias@gmail.com",
-    "date_of_birth": "13/06/1990",
-    "cpf": "07568875950",
-    "phone": "43996935598",
-    "gender": "masculino",
-    "date_joined": "2023-02-17T22:51:23.066638Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
-  },
-  {
-    "id": "9f77c944-d537-4bb0-af23-1be85ebbdef6",
+    "id": "9edd0ee1-566d-4bc8-8f43-cfd90e8b5f5c",
     "address": null,
-    "first_name": "Karina",
-    "last_name": "Bastos de Melo",
-    "email": "karina@gmail.com",
-    "date_of_birth": "22/09/1998",
-    "cpf": "07568827788",
-    "phone": "43996935577",
-    "gender": "feminino",
-    "date_joined": "2023-02-18T17:20:55.632551Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+    "first_name": "Alexandro",
+    "last_name": "Paiva Vasconcelos",
+    "email": "alex_paiva@gmail.com",
+    "date_of_birth": "13/05/1994",
+    "cpf": "07588897452",
+    "phone": "43996521452",
+    "gender": "masculino",
+    "date_joined": "2023-03-04T17:12:13.446827Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   },
   {
-    "id": "a186890d-24d9-483c-82d8-d95df91039e4",
+    "id": "07887447-8576-41e5-8039-413dcf5ff149",
+    "address": null,
+    "first_name": "Angélica",
+    "last_name": "Arruda De Melo",
+    "email": "angelica_melo@gmail.com",
+    "date_of_birth": "18/07/1996",
+    "cpf": "07568895254",
+    "phone": "43998521463",
+    "gender": "feminino",
+    "date_joined": "2023-03-04T18:15:13.860093Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
+  },
+  {
+    "id": "cf44dcc2-5646-4a68-b6b3-6ab182716e9c",
     "address": null,
     "first_name": "Bernardo",
     "last_name": "Alves",
@@ -1551,8 +1880,8 @@ Status code
     "cpf": "07568827777",
     "phone": "43996935456",
     "gender": "lgbt",
-    "date_joined": "2023-02-19T01:07:23.513467Z",
-    "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+    "date_joined": "2023-03-10T00:31:03.002566Z",
+    "school": "cd94916b-571b-4a6e-afa0-efe080861422"
   }
 ]
 ```
@@ -1615,17 +1944,17 @@ Status code
 
 ```json
 {
-  "id": "8bb2e07d-3091-4a04-a50a-e4027bdde1af",
-  "address": "ca929dce-cbfe-4af8-819a-a0d8db287065",
-  "first_name": "Tobias",
-  "last_name": "Almeida Ramos",
-  "email": "tobias@gmail.com",
-  "date_of_birth": "13/06/1990",
-  "cpf": "07568875950",
-  "phone": "43996935598",
+  "id": "9edd0ee1-566d-4bc8-8f43-cfd90e8b5f5c",
+  "address": null,
+  "first_name": "Alexandro",
+  "last_name": "Paiva Vasconcelos",
+  "email": "alex_paiva@gmail.com",
+  "date_of_birth": "13/05/1994",
+  "cpf": "07588897452",
+  "phone": "43996521452",
   "gender": "masculino",
-  "date_joined": "2023-02-17T22:51:23.066638Z",
-  "school": "6e7642c7-bd7d-47c6-b4d0-adbb39d735be"
+  "date_joined": "2023-03-04T17:12:13.446827Z",
+  "school": "cd94916b-571b-4a6e-afa0-efe080861422"
 }
 ```
 

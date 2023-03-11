@@ -16,7 +16,7 @@ class SchoolCreateGetView(views.APIView):
     def post(self, request):
         serializer = SchoolSerializer(data=request.data)
         if not serializer.is_valid():
-            return response.Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else: 
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +39,7 @@ class SchoolView(views.APIView):
             school = get_object_or_404(School, id=school_id)
             serializer = SchoolSerializer(school, request.data, partial=True)
             if not serializer.is_valid():
-                return response.Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
                 serializer.save()
                 return response.Response(serializer.data)
